@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { ScrollView, Text, KeyboardAvoidingView, View } from 'react-native'
+import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -10,22 +10,20 @@ import { Metrics } from '../Themes'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
 import { Actions as NavigationActions } from 'react-native-router-flux'
-import LandingHeader from '../Components/LandingHeader'
+
 // Styles
-import styles from './Styles/LandingStyle'
+import styles from './Styles/PlayerInfoStyle'
 
 // I18n
 import I18n from 'react-native-i18n'
 
-class Landing extends React.Component {
+class PlayerInfo extends React.Component {
 
   render () {
     return (
       <ScrollView style={styles.container}>
         <KeyboardAvoidingView behavior='position'>
-          <View style={styles.landingPage}>
-           <LandingHeader />
-          </View>
+          <Text>PlayerInfo Container</Text>
         </KeyboardAvoidingView>
       </ScrollView>
     )
@@ -43,4 +41,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Landing)
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerInfo)
