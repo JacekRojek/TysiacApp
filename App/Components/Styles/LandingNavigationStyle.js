@@ -6,6 +6,9 @@ import { Colors, Metrics, ApplicationStyles } from '../../Themes/'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Metrics.titlePadding
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    padding: 10,
   }
 })
