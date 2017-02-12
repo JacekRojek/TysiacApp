@@ -7,5 +7,8 @@ export default StyleSheet.create({
   ...ApplicationStyles.screen,
   landingPage: {
       backgroundColor: Colors.bloodOrange,
+      flex: 1,
+      alignItems: 'stretch',
+      justifyContent: 'center',
     },
 })
