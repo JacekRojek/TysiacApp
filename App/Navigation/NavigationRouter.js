@@ -22,6 +22,7 @@ import ThemeScreen from '../Containers/ThemeScreen'
 import DeviceInfoScreen from '../Containers/DeviceInfoScreen'
 import Landing from '../Containers/Landing'
 import PlayerInfo from '../Containers/PlayerInfo'
+import Players from '../Containers/Players'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -46,7 +47,7 @@ class NavigationRouter extends Component {
             <Scene key='theme' component={ThemeScreen} title='Theme' />
             <Scene initial key='landing' component={Landing} title='Tysiac Score App' />
             <Scene key='playerInfo' component={PlayerInfo} title='Player Info' />
-
+            <Scene key='players' component={Players} title='Players List' />
             {/* Custom navigation bar example */}
             <Scene key='deviceInfo' component={DeviceInfoScreen} title='Device Info' />
           </Scene>

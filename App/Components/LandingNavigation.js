@@ -13,12 +13,12 @@ export default class LandingNavigation extends React.Component {
     return (
       <View style={styles.container}>
         <RoundedButton
-          onPress={NavigationActions.landing}
-          text="  Start  "
+          onPress={NavigationActions.players}
+          text="Start"
         />
         <RoundedButton
           onPress={NavigationActions.landing}
-          text="  History  "
+          text="History"
           color="#841584"
         />
       </View>
