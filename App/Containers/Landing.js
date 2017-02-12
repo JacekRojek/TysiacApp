@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import Animatable from 'react-native-animatable'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import LandingHeader from '../Components/LandingHeader'
+import LandingNavigation from '../Components/LandingNavigation'
 // Styles
 import styles from './Styles/LandingStyle'
 
@@ -21,13 +22,10 @@ class Landing extends React.Component {
 
   render () {
     return (
-      <ScrollView style={styles.container}>
-        <KeyboardAvoidingView behavior='position'>
-          <View style={styles.landingPage}>
+        <View style={styles.landingPage}>
            <LandingHeader />
-          </View>
-        </KeyboardAvoidingView>
-      </ScrollView>
+           <LandingNavigation />
+        </View>
     )
   }
 
