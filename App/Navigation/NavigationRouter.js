@@ -24,6 +24,7 @@ import Landing from '../Containers/Landing'
 import PlayerInfo from '../Containers/PlayerInfo'
 import Players from '../Containers/Players'
 import ScoreInput from '../Containers/ScoreInput'
+import GameOver from '../Containers/GameOver'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -49,7 +50,9 @@ class NavigationRouter extends Component {
             <Scene initial key='landing' component={Landing} title='Tysiac Score App' />
             <Scene key='playerInfo' component={PlayerInfo} title='Player Info' />
             <Scene key='players' component={Players} title='Players List' />
-            <Scene key='scoreInput' component={ScoreInput} title='Players List' />
+            <Scene key='scoreInput' component={ScoreInput} title='Score Input' />
+            <Scene key='gameOver' component={GameOver} title='Game Over' />
+            
             {/* Custom navigation bar example */}
             <Scene key='deviceInfo' component={DeviceInfoScreen} title='Device Info' />
           </Scene>
