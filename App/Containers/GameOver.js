@@ -27,7 +27,7 @@ class GameOver extends React.Component {
         <GameOverHeader />
         <View style={{flex: 1}}>
           <RoundedButton
-            onPress={NavigationActions.landing}
+            onPress={NavigationActions.history}
             text="History"
             color="#841584"
           />
