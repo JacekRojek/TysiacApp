@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { ScrollView, Text, KeyboardAvoidingView } from 'react-native'
+import { View, Text, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -18,14 +18,12 @@ import styles from './Styles/PlayerInfoStyle'
 import I18n from 'react-native-i18n'
 
 class PlayerInfo extends React.Component {
-
   render () {
     return (
-      <ScrollView style={styles.container}>
-        <KeyboardAvoidingView behavior='position'>
-          <Text>PlayerInfo Container</Text>
-        </KeyboardAvoidingView>
-      </ScrollView>
+      <View style={styles.container}>
+          <Text>Jacek</Text>
+          <Text>{5 + "wins"}</Text>
+      </View>
     )
   }
 
