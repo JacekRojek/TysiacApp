@@ -1,6 +1,7 @@
 {
    "signIn": "Sign In",
    "logOut": "Log Out",
+   "landingHeader": "Tysiac Score Counting App",
    "loginLogoutExampleTitle": "Login/Logout Redux + Sagas Example",
    "progressiveImageComponent": "Progressive Image Component",
    "api": "API",
