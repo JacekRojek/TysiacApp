@@ -113,7 +113,7 @@ class Players extends React.Component {
           pageSize={10}
         />
         <RoundedButton
-          onPress={() => console.warn("NavigationActions.scoreInput")}
+          onPress={NavigationActions.scoreInput}
           text="Start"
         />
       </View>
