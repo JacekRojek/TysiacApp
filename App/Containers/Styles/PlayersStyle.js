@@ -14,24 +14,6 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
-  row: {
-    flex: 1,
-    backgroundColor: Colors.fire,
-    marginVertical: Metrics.smallMargin,
-    justifyContent: 'center'
-  },
-  boldLabel: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-    color: Colors.snow,
-    textAlign: 'center',
-    marginBottom: Metrics.smallMargin
-  },
-  label: {
-    textAlign: 'center',
-    color: Colors.snow
-  },
   listContent: {
     flex: 1,
   }

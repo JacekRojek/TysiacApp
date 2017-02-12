@@ -1,7 +1,7 @@
 // @flow
 
 import React, { PropTypes } from 'react'
-import { View, Text, ListView } from 'react-native'
+import { View, Text, ListView, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import RoundedButton from '../Components/RoundedButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -10,7 +10,7 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 // For empty lists
 import AlertMessage from '../Components/AlertMessage'
 import PlayersHeader from '../Components/PlayersHeader'
-
+import PlayerRow from '../Components/PlayerRow'
 // Styles
 import styles from './Styles/PlayersStyle'
 
@@ -62,10 +62,7 @@ class Players extends React.Component {
   *************************************************************/
   renderRow (rowData) {
     return (
-      <View style={styles.row}>
-        <Text style={styles.boldLabel}>{rowData.title}</Text>
-        <Text style={styles.label}>{rowData.description}</Text>
-      </View>
+      <PlayerRow title={rowData.title} description={rowData.description}/>
     )
   }
 
@@ -96,7 +93,7 @@ class Players extends React.Component {
   // Render a footer.
   renderFooter = () => {
     return (
-      <Text> - Footer - </Text>
+      <Text></Text>
     )
   }
 
