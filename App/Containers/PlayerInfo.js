@@ -21,8 +21,8 @@ class PlayerInfo extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-          <Text>Jacek</Text>
-          <Text>{5 + "wins"}</Text>
+          <Text style={styles.text}>Jacek</Text>
+          <Text style={styles.text}>{"Total wins: "+ 5}</Text>
       </View>
     )
   }
