@@ -8,6 +8,8 @@ const { Types, Creators } = createActions({
   playersSuccess: ['payload'],
   playersFailure: null,
   addPlayer: ['player'],
+  deletePlayer: ['id'],
+  selectPlayer: ['id'],
 })
 
 export const PlayersTypes = Types
@@ -16,13 +18,14 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
+  selectedPlayer: {name: 'Dawid', description: 'Wins: 4', id: 1},
   data: null,
   fetching: false,
   payload: null,
   error: null,
   players: [
-      {name: 'Dawid', description: 'Wins: 4'},
-      {name: 'Marcin', description: 'Wins: 5'},
+      {name: 'Dawid', wins: 4, id: 1},
+      {name: 'Marcin', wins: 5, id: 2},
     ],
 })
 
@@ -45,6 +48,17 @@ export const addPlayer = (state, { player }) => {
   return state.merge({ players })
 }
 
+export const deletePlayer = (state, { id }) => {
+  const players = state.players.filter(o => o.id !== id)
+  return state.merge({ players })
+}
+
+export const selectPlayer = (state, { id }) => {
+  const players = state.players.filter(o => o.id === id)
+  const selectedPlayer = players[0]
+  return state.merge({ selectedPlayer })
+}
+
 // Something went wrong somewhere.
 export const failure = state =>
   state.merge({ fetching: false, error: true, payload: null })
@@ -56,4 +70,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.Players_SUCCESS]: success,
   [Types.Players_FAILURE]: failure,
   [Types.ADD_PLAYER]: addPlayer,
+  [Types.DELETE_PLAYER]: deletePlayer,
+  [Types.SELECT_PLAYER]: selectPlayer,
 })
