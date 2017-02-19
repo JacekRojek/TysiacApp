@@ -12,6 +12,8 @@ const { Types, Creators } = createActions({
   selectPlayer: ['id'],
   choosePlayer: ['id'],
   resetPlayer: null,
+  submitPlayers: null,
+  updateScore: ['id', 'score'],
 })
 
 export const PlayersTypes = Types
@@ -25,6 +27,8 @@ export const INITIAL_STATE = Immutable({
   fetching: false,
   payload: null,
   error: null,
+  selectedPlayers: null,
+  selectedPlayerIndex: 0,
   players: [
       {name: 'Dawid', wins: 4, id: 1, score: 0, selected: true},
       {name: 'Marcin', wins: 5, id: 2, score: 0, selected: true},
@@ -76,6 +80,24 @@ export const resetPlayer = (state, { id }) => {
   return state.merge({ players: [] })
 }
 
+export const submitPlayers = (state, action) => {
+  const selectedPlayers = state.players.filter(o => o.selected === true)
+  return state.merge({ selectedPlayers })
+}
+
+export const updateScore = (state, { id, score }) => {
+  const playersArray  = state.selectedPlayers
+  const selectedPlayers = playersArray.update(
+        playersArray.findIndex(function(item) { 
+          return item.id === id; 
+        }), function(item) {
+          return item.set("score", score);
+        }
+      ); 
+  const selectedPlayerIndex = state.selectedPlayerIndex >= playersArray.length - 1 ? 0 : state.selectedPlayerIndex + 1
+  return state.merge({ selectedPlayers, selectedPlayerIndex})
+}
+
 // Something went wrong somewhere.
 export const failure = state =>
   state.merge({ fetching: false, error: true, payload: null })
@@ -91,4 +113,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SELECT_PLAYER]: selectPlayer,
   [Types.CHOOSE_PLAYER]: choosePlayer,
   [Types.RESET_PLAYER]: resetPlayer,
+  [Types.SUBMIT_PLAYERS]: submitPlayers,
+  [Types.UPDATE_SCORE]: updateScore,
 })

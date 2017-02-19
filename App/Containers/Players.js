@@ -100,7 +100,7 @@ class Players extends React.Component {
     const id = Math.floor((Math.random() * 1000) + 1); 
       return (
       <View style={styles.container}>
-        <PlayersHeader onPress={() => this.props.addPlayer({name: 'Jacek Rojek', wins: 0, 'id': id})}/>
+        <PlayersHeader onPress={() => this.props.addPlayer({name: 'Dawid', wins: 0, 'id': id, score: 0, selected: true})}/>
         <ListView
           contentContainerStyle={styles.listContent}
           dataSource={this.state.dataSource}
