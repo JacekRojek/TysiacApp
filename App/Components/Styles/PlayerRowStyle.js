@@ -9,8 +9,8 @@ export default StyleSheet.create({
     paddingTop: Metrics.titlePadding
   },
   row: {
-    flex: 1,
-    height: 50,
+    padding: 10,
+    height: 60,
     backgroundColor: Colors.fire,
     marginVertical: Metrics.smallMargin,
     justifyContent: 'center'

@@ -61,7 +61,7 @@ class Players extends React.Component {
   *************************************************************/
   renderRow (rowData) {
     return (
-      <PlayerRow title={rowData.name} description={rowData.description}/>
+      <PlayerRow title={rowData.name} description={rowData.wins} id={rowData.id}/>
     )
   }
 
@@ -97,9 +97,10 @@ class Players extends React.Component {
   }
 
   render () {
+    const id = Math.floor((Math.random() * 1000) + 1); 
       return (
       <View style={styles.container}>
-        <PlayersHeader onPress={() => this.props.addPlayer({name: 'Dawid Osial', description: 'Wins: 4'})}/>
+        <PlayersHeader onPress={() => this.props.addPlayer({name: 'Jacek Rojek', wins: 0, 'id': id})}/>
         <ListView
           contentContainerStyle={styles.listContent}
           dataSource={this.state.dataSource}

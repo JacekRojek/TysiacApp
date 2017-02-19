@@ -4,15 +4,21 @@ import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import styles from './Styles/PlayerRowStyle'
 import { Actions as NavigationActions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
+import PlayersActions from '../Redux/PlayersRedux'
 
-export default class PlayerRow extends React.Component {
+class PlayerRow extends React.Component {
+  _handlePlayerSelected = () => {
+    this.props.selectPlayer(this.props.id)
+    NavigationActions.playerInfo()
+  }
 
   render () {
     props = this.props
     return (
-      <TouchableOpacity  style={styles.row} onPress={NavigationActions.playerInfo}>
+      <TouchableOpacity  style={styles.row} onPress={this._handlePlayerSelected}>
         <Text style={styles.boldLabel}>{props.title}</Text>
-        <Text style={styles.label}>{props.description}</Text>
+        <Text style={styles.label}>{'Total wins: '+props.description}</Text>
       </TouchableOpacity >
     )
   }
@@ -28,3 +34,14 @@ export default class PlayerRow extends React.Component {
 // PlayerRow.defaultProps = {
 //   someSetting: false
 // }
+const mapStateToProps = (state) => {
+  return { }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+     selectPlayer: (id) => dispatch(PlayersActions.selectPlayer(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerRow)
