@@ -17,7 +17,7 @@ export default class LandingNavigation extends React.Component {
           text="Start"
         />
         <RoundedButton
-          onPress={NavigationActions.landing}
+          onPress={NavigationActions.history}
           text="History"
           color="#841584"
         />

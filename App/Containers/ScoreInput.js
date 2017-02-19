@@ -38,7 +38,7 @@ class ScoreInput extends React.Component {
     });
   };
   _handleSave() {
-    console.warn("Button Pressed")
+    NavigationActions.gameOver()
   }
   render () {
     return (
