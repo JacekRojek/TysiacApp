@@ -12,7 +12,7 @@ export default class PlayersHeader extends React.Component {
       <View style={styles.container}>
         <Text style={styles.header} >Players</Text>
           <RoundedButton
-            onPress={() => console.warn("player added")}
+            onPress={this.props.onPress}
             text="Add | +"
           />
       </View>

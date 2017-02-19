@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import RoundedButton from '../Components/RoundedButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 // import { Actions as NavigationActions } from 'react-native-router-flux'
-
+import PlayersActions from '../Redux/PlayersRedux'
 // For empty lists
 import AlertMessage from '../Components/AlertMessage'
 import PlayersHeader from '../Components/PlayersHeader'
@@ -29,11 +29,6 @@ class Players extends React.Component {
     * This is an array of objects with the properties you desire
     * Usually this should come from Redux mapStateToProps
     *************************************************************/
-    const dataObjects = [
-      {title: 'Jacek', description: 'Wins: 2'},
-      {title: 'Marcin', description: 'Wins: 5'},
-      {title: 'Dawid', description: 'Wins: 4'},
-    ]
 
     /* ***********************************************************
     * STEP 2
@@ -44,14 +39,18 @@ class Players extends React.Component {
     const rowHasChanged = (r1, r2) => r1 !== r2
 
     // DataSource configured
-    const ds = new ListView.DataSource({rowHasChanged})
+    this.ds = new ListView.DataSource({rowHasChanged})
 
     // Datasource is always in state
     this.state = {
-      dataSource: ds.cloneWithRows(dataObjects)
+      dataSource: this.ds.cloneWithRows(props.players)
     }
   }
 
+   componentWillReceiveProps (newProps) {
+    this.setState({dataSource: this.ds.cloneWithRows(newProps.players)})
+    // this.forceUpdate()
+  }
   /* ***********************************************************
   * STEP 3
   * `renderRow` function -How each cell/row should be rendered
@@ -62,7 +61,7 @@ class Players extends React.Component {
   *************************************************************/
   renderRow (rowData) {
     return (
-      <PlayerRow title={rowData.title} description={rowData.description}/>
+      <PlayerRow title={rowData.name} description={rowData.description}/>
     )
   }
 
@@ -98,16 +97,17 @@ class Players extends React.Component {
   }
 
   render () {
-    return (
+      return (
       <View style={styles.container}>
-        <PlayersHeader />
+        <PlayersHeader onPress={() => this.props.addPlayer({name: 'Dawid Osial', description: 'Wins: 4'})}/>
         <ListView
           contentContainerStyle={styles.listContent}
           dataSource={this.state.dataSource}
           renderRow={this.renderRow}
           renderFooter={this.renderFooter}
           enableEmptySections
-          pageSize={10}
+          pageSize={15}
+          style={{flex: 1}}
         />
         <RoundedButton
           onPress={NavigationActions.scoreInput}
@@ -120,12 +120,13 @@ class Players extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    // ...redux state to props here
+    players: state.players.players,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
+     addPlayer: (player) => dispatch(PlayersActions.addPlayer(player))
   }
 }
 

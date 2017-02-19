@@ -15,6 +15,6 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
   },
   listContent: {
-    flex: 1,
+    height: 1000,
   }
 })

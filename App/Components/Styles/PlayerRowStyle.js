@@ -10,6 +10,7 @@ export default StyleSheet.create({
   },
   row: {
     flex: 1,
+    height: 50,
     backgroundColor: Colors.fire,
     marginVertical: Metrics.smallMargin,
     justifyContent: 'center'
