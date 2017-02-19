@@ -9,21 +9,33 @@ export default StyleSheet.create({
     paddingTop: Metrics.titlePadding
   },
   row: {
-    flex: 1,
+    padding: 10,
+    height: 70,
     backgroundColor: Colors.fire,
     marginVertical: Metrics.smallMargin,
-    justifyContent: 'center'
+    justifyContent: 'space-between',
+    flexDirection: 'row'
+  },
+  iconContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderLeftWidth: 1,
+    borderLeftColor: Colors.snow,
+  },
+  textContainer: {
+    flex: 4,
+    flexDirection: 'column'
   },
   boldLabel: {
     fontSize: 20,
     fontWeight: 'bold',
-    alignSelf: 'center',
     color: Colors.snow,
-    textAlign: 'center',
+    textAlign: 'left',
     marginBottom: Metrics.smallMargin
   },
   label: {
-    textAlign: 'center',
+    textAlign: 'left',
     color: Colors.snow
   },
 })
