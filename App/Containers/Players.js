@@ -6,11 +6,11 @@ import { connect } from 'react-redux'
 import RoundedButton from '../Components/RoundedButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 // import { Actions as NavigationActions } from 'react-native-router-flux'
-import PlayersActions from '../Redux/PlayersRedux'
 // For empty lists
 import AlertMessage from '../Components/AlertMessage'
 import PlayersHeader from '../Components/PlayersHeader'
 import PlayerRow from '../Components/PlayerRow'
+import PlayersActions from '../Redux/PlayersRedux'
 // Styles
 import styles from './Styles/PlayersStyle'
 
@@ -97,10 +97,9 @@ class Players extends React.Component {
   }
 
   render () {
-    const id = Math.floor((Math.random() * 1000) + 1); 
       return (
       <View style={styles.container}>
-        <PlayersHeader onPress={() => this.props.addPlayer({name: 'Jacek Rojek', wins: 0, 'id': id})}/>
+        <PlayersHeader />
         <ListView
           contentContainerStyle={styles.listContent}
           dataSource={this.state.dataSource}
@@ -111,7 +110,10 @@ class Players extends React.Component {
           style={{flex: 1}}
         />
         <RoundedButton
-          onPress={NavigationActions.scoreInput}
+          onPress={() => {
+            this.props.submitPlayers()
+            NavigationActions.scoreInput()
+            }}
           text="Start"
         />
       </View>
@@ -127,8 +129,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-     addPlayer: (player) => dispatch(PlayersActions.addPlayer(player))
-  }
+    submitPlayers: () => dispatch(PlayersActions.submitPlayers())
+   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Players)

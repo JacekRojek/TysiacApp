@@ -16,6 +16,7 @@ export default StyleSheet.create({
     padding: 10,
     margin: 10,
     height: 50,
-    color: Colors.snow
+    color: Colors.snow,
+    borderColor: 'white',
   }
 })

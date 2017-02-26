@@ -13,5 +13,11 @@ export default StyleSheet.create({
     fontSize: 40,
     color: "white",
     textAlign: "center",
+  },
+  textInput: {
+    padding: 10,
+    margin: 10,
+    height: 50,
+    color: Colors.snow
   }
 })

@@ -7,10 +7,12 @@ import styles from './Styles/ScoreInputHeaderStyle'
 export default class ScoreInputHeader extends React.Component {
 
   render () {
+    const {name, score} = this.props
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Enter Score</Text>
-        <Text style={styles.text}>Jacek</Text>
+        <Text style={styles.text}>{name}</Text>
+        <Text style={styles.text}>Total Score: {score}</Text>
       </View>
     )
   }
