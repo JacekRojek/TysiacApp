@@ -10,6 +10,7 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 import AlertMessage from '../Components/AlertMessage'
 import PlayersHeader from '../Components/PlayersHeader'
 import PlayerRow from '../Components/PlayerRow'
+import PlayersActions from '../Redux/PlayersRedux'
 // Styles
 import styles from './Styles/PlayersStyle'
 
@@ -109,7 +110,10 @@ class Players extends React.Component {
           style={{flex: 1}}
         />
         <RoundedButton
-          onPress={NavigationActions.scoreInput}
+          onPress={() => {
+            this.props.submitPlayers()
+            NavigationActions.scoreInput()
+            }}
           text="Start"
         />
       </View>
@@ -124,7 +128,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return { }
+  return {
+    submitPlayers: () => dispatch(PlayersActions.submitPlayers())
+   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Players)

@@ -44,6 +44,9 @@ class PlayersHeader extends React.Component {
                 placeholder="Name"
                 placeholderTextColor="white"
                 autoCorrect={false}
+                 onChange={(event) => this.updateText(
+                  event.nativeEvent.text
+                )}
                 onEndEditing={(event) => this.updateText(
                   event.nativeEvent.text
                 )}

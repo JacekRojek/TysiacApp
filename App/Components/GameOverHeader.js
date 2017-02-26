@@ -10,7 +10,7 @@ export default class GameOverHeader extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Winner:</Text>
-        <Text style={styles.text}>Jacek</Text>
+        <Text style={styles.text}>{this.props.player.name}</Text>
         <Text style={styles.text}>Congratulations!</Text>
       </View>
     )

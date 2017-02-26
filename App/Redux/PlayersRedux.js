@@ -82,18 +82,15 @@ export const resetPlayer = (state, { id }) => {
 
 export const submitPlayers = (state, action) => {
   const selectedPlayers = state.players.filter(o => o.selected === true)
-  return state.merge({ selectedPlayers })
+  return state.merge({ selectedPlayers, selectedPlayerIndex: 0 })
 }
 
 export const updateScore = (state, { id, score }) => {
   const playersArray  = state.selectedPlayers
-  const selectedPlayers = playersArray.update(
-        playersArray.findIndex(function(item) { 
-          return item.id === id; 
-        }), function(item) {
-          return item.set("score", score);
-        }
-      ); 
+  const selectedPlayers = playersArray.slice().update(
+          playersArray.findIndex(item => item.id === id ),
+          item => item.set('score', score)
+        ); 
   const selectedPlayerIndex = state.selectedPlayerIndex >= playersArray.length - 1 ? 0 : state.selectedPlayerIndex + 1
   return state.merge({ selectedPlayers, selectedPlayerIndex})
 }

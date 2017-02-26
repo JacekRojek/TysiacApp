@@ -22,38 +22,38 @@ import I18n from 'react-native-i18n'
 class ScoreInput extends React.Component {
   state = {
     curText: '<No Event>',
-    prevText: '<No Event>',
-    prev2Text: '<No Event>',
-    prev3Text: '<No Event>',
   };
   constructor(props) {
     super(props);
-    this.state = {selectedPlayer: props.players[props.index]};
+    this.state = {selectedPlayer: props.player};
   }
 
   updateText = (text) => {
     this.setState((state) => {
       return {
         curText: text,
-        prevText: state.curText,
-        prev2Text: state.prevText,
-        prev3Text: state.prev2Text,
       };
     });
   };
+
+  componentWillReceiveProps(nexProps) {
+    this.setState({selectedPlayer: nexProps.player})
+    if(nexProps.player.score >= 1000) {
+      NavigationActions.gameOver()
+    }
+  }
+
   _handleSave() {
     const curentScore = this.state.selectedPlayer.score
-    const score = this.state.curText + curentScore
+    const score = parseInt(this.state.curText) + curentScore
     this.props.updateScore(this.state.selectedPlayer.id, score)
-    NavigationActions.scoreInput()
-    // NavigationActions.gameOver()
   }
   render () {
     const {name, score} = this.state.selectedPlayer
     return (
       <KeyboardAvoidingView style={styles.container}>
         <ScoreInputHeader name={name} score={score}/>
-        <View style={{flex:1}}> 
+        <View style={{flex:1, marginHorizontal: 50}}> 
           <TextInput
             keyboardType="numeric" 
             autoCapitalize="none"
@@ -63,26 +63,19 @@ class ScoreInput extends React.Component {
             onFocus={() => this.updateText('onFocus')}
             onBlur={() => this.updateText('onBlur')}
             onChange={(event) => this.updateText(
-              'onChange text: ' + event.nativeEvent.text
+              event.nativeEvent.text
             )}
             onEndEditing={(event) => this.updateText(
-              'onEndEditing text: ' + event.nativeEvent.text
+              event.nativeEvent.text
             )}
             onSubmitEditing={(event) => this.updateText(
-              'onSubmitEditing text: ' + event.nativeEvent.text
+              event.nativeEvent.text
             )}
-            onSelectionChange={(event) => this.updateText(
-              'onSelectionChange range: ' +
-                event.nativeEvent.selection.start + ',' +
-                event.nativeEvent.selection.end
-            )}
-            onKeyPress={(event) => {
-              this.updateText('onKeyPress key: ' + event.nativeEvent.key);
-            }}
             style={styles.textInput}
+            underlineColorAndroid={'white'}
           />
           <RoundedButton
-            onPress={this._handleSave}
+            onPress={() => this._handleSave()}
             text="Save"
           />
         </View>
@@ -94,8 +87,6 @@ class ScoreInput extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    index: store.players.selectedPlayerIndex,
-    players: store.players.selectedPlayers
   }
 }
 
