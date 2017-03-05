@@ -21,11 +21,9 @@ import I18n from 'react-native-i18n'
 
 class GameOver extends React.Component {
   render () {
-    const player = this.props.players.find(o => o.score >=1000 )
-    console.warn("Player", player)
     return (
       <View style={styles.container}>
-        <GameOverHeader player={player}/>
+        <GameOverHeader player={this.props.winner}/>
         <View style={{flex: 1}}>
           <RoundedButton
             onPress={NavigationActions.history}
@@ -40,7 +38,7 @@ class GameOver extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    players:  state.players.selectedPlayers,
+    winner:  state.players.selectedPlayer,
   }
 }
 

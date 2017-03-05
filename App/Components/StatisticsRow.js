@@ -10,17 +10,22 @@ export default class StatisticsRow extends React.Component {
     super(props);
     this.state = {collapsed: true}
   }
+
+
   render () {
     props = this.props;
     return (
       <View style={styles.row}>
         <TouchableOpacity onPress={() => this.setState({collapsed: !this.state.collapsed})} >
-          <Text style={styles.boldLabel}>{props.title}</Text>
-          <Text style={styles.label}>{"Winner: "+ props.description}</Text>
+          <Text style={styles.boldLabel}>{props.date}</Text>
+          <Text style={styles.label}>{"Winner: "+ props.name}</Text>
         </TouchableOpacity>
         <Collapsible key collapsed={this.state.collapsed} style={styles.collapsible}>
-            <Text style={styles.boldLabel}>{"Date:" + props.title}</Text>
-            <Text style={styles.label}>{"Winner: "+ props.description + "    "+ props.points + " Points"}</Text>
+        {
+          props.players.map((player, i) => 
+            <Text key={i} style={styles.label}>{player.name + "    "+ player.score + " Points"}</Text>
+          )
+        }
         </Collapsible>
       </View>
     )

@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { View, KeyboardAvoidingView, TextInput } from 'react-native'
+import { ScrollView, KeyboardAvoidingView, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -39,6 +39,7 @@ class ScoreInput extends React.Component {
   componentWillReceiveProps(nexProps) {
     this.setState({selectedPlayer: nexProps.player})
     if(nexProps.player.score >= 1000) {
+      this.props.endGame()
       NavigationActions.gameOver()
     }
   }
@@ -53,7 +54,7 @@ class ScoreInput extends React.Component {
     return (
       <KeyboardAvoidingView style={styles.container}>
         <ScoreInputHeader name={name} score={score}/>
-        <View style={{flex:1, marginHorizontal: 50}}> 
+        <ScrollView style={{flex:1, marginHorizontal: 50}}> 
           <TextInput
             keyboardType="numeric" 
             autoCapitalize="none"
@@ -78,7 +79,7 @@ class ScoreInput extends React.Component {
             onPress={() => this._handleSave()}
             text="Save"
           />
-        </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     )
   }
@@ -92,7 +93,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateScore: (id, score) => dispatch(PlayersActions.updateScore(id, score))
+    updateScore: (id, score) => dispatch(PlayersActions.updateScore(id, score)),
+    endGame: () => dispatch(PlayersActions.endGame()),
   }
 }
 
