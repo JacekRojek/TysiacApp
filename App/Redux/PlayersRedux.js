@@ -1,5 +1,6 @@
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
+import Moment from 'moment'
 
 /* ------------- Types and Action Creators ------------- */
 
@@ -14,6 +15,7 @@ const { Types, Creators } = createActions({
   resetPlayer: null,
   submitPlayers: null,
   updateScore: ['id', 'score'],
+  endGame: null,
 })
 
 export const PlayersTypes = Types
@@ -22,6 +24,7 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
+  history: [],
   selectedPlayer: {name: 'Dawid', description: 'Wins: 4', id: 1},
   data: null,
   fetching: false,
@@ -95,6 +98,14 @@ export const updateScore = (state, { id, score }) => {
   return state.merge({ selectedPlayers, selectedPlayerIndex})
 }
 
+export const endGame = (state, action) => {
+  const winner = state.selectedPlayers.find(o => o.score >=1000 )
+  const date = Moment().format('MMMM Do YYYY')
+  const gameHistory = {date, name: winner.name, players: state.selectedPlayers}
+  const history = state.history.concat(gameHistory)
+  return state.merge({ selectedPlayers: [], selectedPlayer: winner, history })
+}
+
 // Something went wrong somewhere.
 export const failure = state =>
   state.merge({ fetching: false, error: true, payload: null })
@@ -112,4 +123,5 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.RESET_PLAYER]: resetPlayer,
   [Types.SUBMIT_PLAYERS]: submitPlayers,
   [Types.UPDATE_SCORE]: updateScore,
+  [Types.END_GAME]: endGame,
 })
